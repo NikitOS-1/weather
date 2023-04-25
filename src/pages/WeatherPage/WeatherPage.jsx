@@ -1,5 +1,9 @@
+import { useSelector } from "react-redux";
+
 const WeatherPage = () => {
-  return <div>WeatherPage</div>;
+  const data = useSelector((i) => i.dataWeather.data);
+
+  return <div>{data}</div>;
 };
 
 export default WeatherPage;
