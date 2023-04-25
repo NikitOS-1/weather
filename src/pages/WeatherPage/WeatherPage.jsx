@@ -1,9 +1,14 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchWeather } from "../../redux/dataWeatherReducer";
 
 const WeatherPage = () => {
-  const data = useSelector((i) => i.dataWeather.data);
-
-  return <div>{data}</div>;
+  const nameCity = useSelector((i) => i.dataWeather.name);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchWeather());
+  }, []);
+  return <div>{nameCity}</div>;
 };
 
 export default WeatherPage;
