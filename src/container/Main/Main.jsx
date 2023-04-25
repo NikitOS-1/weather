@@ -1,4 +1,10 @@
+import WeatherPage from "../../pages/WeatherPage/WeatherPage";
+
 const Main = () => {
-  return <div>Main</div>;
+  return (
+    <div>
+      <WeatherPage />
+    </div>
+  );
 };
 export default Main;
