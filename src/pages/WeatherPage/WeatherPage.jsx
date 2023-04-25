@@ -1,14 +1,32 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchWeather } from "../../redux/dataWeatherReducer";
+import { changeCity, fetchWeather } from "../../redux/dataWeatherReducer";
 
 const WeatherPage = () => {
   const nameCity = useSelector((i) => i.dataWeather.name);
   const dispatch = useDispatch();
+
+  const [city, setCity] = useState("");
+  const enterCity = () => {
+    dispatch(changeCity(city));
+    dispatch(fetchWeather());
+  };
+
   useEffect(() => {
     dispatch(fetchWeather());
   }, []);
-  return <div>{nameCity}</div>;
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={city}
+        onChange={(e) => setCity((prev) => (prev = e.target.value))}
+      />
+      <button onClick={enterCity}>Search</button>
+      {nameCity}
+    </div>
+  );
 };
 
 export default WeatherPage;

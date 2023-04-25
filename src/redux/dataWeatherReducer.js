@@ -3,9 +3,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchWeather = createAsyncThunk(
   "dataWeather/fetchWeather",
   async function () {
-    const respons = await fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=Germany&appid=c66753bbdac258596336769aae208ad1"
-    );
+    let url = "https://api.openweathermap.org/data/2.5/weather?q=";
+    let nameCity = initialState.enter;
+    let api = "&appid=c66753bbdac258596336769aae208ad1";
+    const respons = await fetch(`${url}${nameCity}${api}`);
     const data = await respons.json();
     console.log(data);
     return data;
@@ -13,13 +14,18 @@ export const fetchWeather = createAsyncThunk(
 );
 
 const initialState = {
+  enter: null,
   name: null,
 };
 
 const dataWeather = createSlice({
   name: "dataWeather",
   initialState,
-  reducers: {},
+  reducers: {
+    changeCity: (state, action) => {
+      state.enter = action.payload;
+    },
+  },
   extraReducers: (bulder) => {
     bulder
       .addCase(fetchWeather.pending, (state, action) => {})
@@ -30,5 +36,5 @@ const dataWeather = createSlice({
   },
 });
 
-export const {} = dataWeather.actions;
+export const { changeCity } = dataWeather.actions;
 export default dataWeather;
