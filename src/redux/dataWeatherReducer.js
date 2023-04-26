@@ -2,14 +2,19 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchWeather = createAsyncThunk(
   "dataWeather/fetchWeather",
-  async function () {
-    let url = "https://api.openweathermap.org/data/2.5/weather?q=";
-    let nameCity = initialState.enter;
-    let api = "&appid=c66753bbdac258596336769aae208ad1";
-    const respons = await fetch(`${url}${nameCity}${api}`);
-    const data = await respons.json();
-    console.log(data);
-    return data;
+  async function (_, { rejectWithValue, getState }) {
+    try {
+      let url = "https://api.openweathermap.org/data/2.5/weather?q=";
+      let nameCity = initialState.enter;
+      let api = "&appid=c66753bbdac258596336769aae208ad1";
+      const respons = await fetch(`${url}${nameCity}${api}`);
+      const data = await respons.json();
+      console.log(data);
+      // throw new Error("Error Server")
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
   }
 );
 
