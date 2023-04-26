@@ -7,6 +7,7 @@ const WeatherPage = () => {
   const dispatch = useDispatch();
 
   const [city, setCity] = useState("");
+
   const enterCity = () => {
     dispatch(changeCity(city));
     dispatch(fetchWeather());
@@ -14,7 +15,7 @@ const WeatherPage = () => {
 
   useEffect(() => {
     dispatch(fetchWeather());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -24,6 +25,7 @@ const WeatherPage = () => {
         onChange={(e) => setCity((prev) => (prev = e.target.value))}
       />
       <button onClick={enterCity}>Search</button>
+      <br />
       {nameCity}
     </div>
   );
