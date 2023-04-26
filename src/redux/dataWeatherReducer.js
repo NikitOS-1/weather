@@ -4,15 +4,21 @@ export const fetchWeather = createAsyncThunk(
   "dataWeather/fetchWeather",
   async function (_, { rejectWithValue, getState }) {
     try {
-      let url = "https://api.openweathermap.org/data/2.5/weather?q=";
-      let nameCity = initialState.enter;
+      let url = "https://api.fopenweathermap.org/data/2.5/weather?q=";
+      let nameCity = getState().dataWeather.enter;
       let api = "&appid=c66753bbdac258596336769aae208ad1";
       const respons = await fetch(`${url}${nameCity}${api}`);
       const data = await respons.json();
       console.log(data);
-      // throw new Error("Error Server")
+      console.log(data.cod);
+      console.log(data.message);
+      if (data.message) {
+        throw new Error("Error Server");
+      }
+
       return data;
     } catch (error) {
+      console.log(error.message);
       return rejectWithValue(error.message);
     }
   }
