@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { changeCity, fetchWeather } from "../../redux/dataWeatherReducer";
 
 const WeatherPage = () => {
-  const { status, error, selectCity, data } = useSelector((i) => i.dataWeather);
+  const { status, error, selectCity, name, temp, country } = useSelector(
+    (i) => i.dataWeather
+  );
   const dispatch = useDispatch();
 
   const [city, setCity] = useState("");
@@ -12,11 +14,7 @@ const WeatherPage = () => {
     dispatch(changeCity(city));
     dispatch(fetchWeather());
   };
-
-  useEffect(() => {
-    dispatch(fetchWeather());
-  }, [dispatch]);
-  console.log({ status, error, selectCity, data });
+  console.log({ status, error, selectCity, name, temp });
   return (
     <div>
       <input
@@ -26,14 +24,12 @@ const WeatherPage = () => {
       />
       <button onClick={enterCity}>Search</button>
       <br />
-      {selectCity}
-      <br />
       {error}
       <br />
-      {status}
+      {name}
+      {country}
       <br />
-      {data}
-      <br />
+      {temp}
     </div>
   );
 };

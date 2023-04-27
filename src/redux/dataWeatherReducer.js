@@ -26,7 +26,10 @@ const initialState = {
   status: null,
   error: null,
   selectCity: null,
-  data: null,
+  name: null,
+  temp: null,
+  country: null,
+  weather: null,
 };
 
 const dataWeather = createSlice({
@@ -44,12 +47,15 @@ const dataWeather = createSlice({
         state.error = null;
       })
       .addCase(fetchWeather.fulfilled, (state, action) => {
-        state.status = "fulfilled";
+        state.status = action.payload.cod;
         state.error = null;
-        state.data = action.payload.name;
+        state.name = action.payload.name;
+        state.temp = action.payload.main.temp;
+        state.country = action.payload.sys.country;
+        state.country = action.payload.weather;
       })
       .addCase(fetchWeather.rejected, (state, action) => {
-        state.status = "rejected";
+        state.status = "error";
         state.error = action.payload;
       });
   },
