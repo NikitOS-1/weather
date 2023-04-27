@@ -12,6 +12,7 @@ const WeatherPage = () => {
     country,
     weatherMain,
     weatherDesc,
+    wind,
   } = useSelector((i) => i.dataWeather);
 
   const dispatch = useDispatch();
@@ -19,30 +20,36 @@ const WeatherPage = () => {
   const [city, setCity] = useState("");
 
   const enterCity = () => {
+    setCity("");
     dispatch(changeCity(city));
     dispatch(fetchWeather());
   };
-  console.log({ status, error, selectCity, name, temp });
+  const handleKeyPress = (e) => {
+    console.log(e);
+  };
   return (
     <div>
       <input
+        onSubmit={handleKeyPress}
         type="text"
         value={city}
         onChange={(e) => setCity((prev) => (prev = e.target.value))}
       />
       <button onClick={enterCity}>Search</button>
       <br />
+      {status == "loading" ? <p>Loading . . . </p> : null}
       {error}
       <br />
       {name}
-      <br />
       {country}
       <br />
-      {temp ? Math.floor(temp) : null}
+      {temp ? Math.floor(temp) + "°C" : null}
       <br />
       {weatherMain}
       <br />
       {weatherDesc}
+      <br />
+      {wind ? wind + " m/s." : null}
     </div>
   );
 };

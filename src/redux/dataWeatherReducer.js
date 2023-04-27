@@ -19,7 +19,7 @@ export const fetchWeather = createAsyncThunk(
         dispatch(removedCity());
         throw new Error("Enter City");
       }
-      console.log(data);
+      // console.log(data);
       return data;
     } catch (error) {
       if (error.message == "Failed to fetch") {
@@ -39,6 +39,7 @@ const initialState = {
   country: null,
   weatherMain: null,
   weatherDesc: null,
+  wind: null,
 };
 
 const dataWeather = createSlice({
@@ -55,6 +56,7 @@ const dataWeather = createSlice({
       state.country = null;
       state.weatherMain = null;
       state.weatherDesc = null;
+      state.wind = null;
     },
   },
   extraReducers: (bulder) => {
@@ -64,11 +66,12 @@ const dataWeather = createSlice({
         state.error = null;
       })
       .addCase(fetchWeather.fulfilled, (state, action) => {
-        state.status = action.payload.cod;
+        state.status = "fulfilled";
         state.error = null;
         state.name = action.payload.name;
         state.temp = action.payload.main.temp;
         state.country = action.payload.sys.country;
+        state.wind = action.payload.wind.speed;
         state.weatherMain = action.payload.weather[0].main;
         state.weatherDesc = action.payload.weather[0].description;
       })
