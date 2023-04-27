@@ -25,12 +25,14 @@ const WeatherPage = () => {
     dispatch(fetchWeather());
   };
   const handleKeyPress = (e) => {
-    console.log(e);
+    if (e.key === "Enter") {
+      enterCity();
+    }
   };
   return (
     <div>
       <input
-        onSubmit={handleKeyPress}
+        onKeyDown={handleKeyPress}
         type="text"
         value={city}
         onChange={(e) => setCity((prev) => (prev = e.target.value))}
