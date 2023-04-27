@@ -4,10 +4,12 @@ export const fetchWeather = createAsyncThunk(
   "dataWeather/fetchWeather",
   async function (_, { rejectWithValue, getState }) {
     try {
-      let url = "https://api.fopenweathermap.org/data/2.5/weather?q=";
+      let url = "https://api.openweathermap.org/data/2.5/weather?q=";
       let nameCity = getState().dataWeather.enter;
       let api = "&appid=c66753bbdac258596336769aae208ad1";
-      const respons = await fetch(`${url}${nameCity}${api}`);
+      let units = "&units=metric";
+      let lang = "&lang=en&lang=ua&lang=ru";
+      const respons = await fetch(`${url}${nameCity}${api}${units}${lang}`);
       const data = await respons.json();
       console.log(data);
       console.log(data.cod);
