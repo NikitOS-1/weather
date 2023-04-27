@@ -11,10 +11,13 @@ export const fetchWeather = createAsyncThunk(
       let lang = "&lang=en&lang=ua&lang=ru";
       const respons = await fetch(`${url}${nameCity}${api}${units}${lang}`);
       const data = await respons.json();
+      if (data.message == "city not found") {
+        throw new Error("City not found");
+      }
       console.log(data);
       return data;
     } catch (error) {
-      console.log(rejectWithValue(error.message));
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -47,7 +50,7 @@ const dataWeather = createSlice({
       })
       .addCase(fetchWeather.rejected, (state, action) => {
         state.status = "rejected";
-        state.error = action.payload.message;
+        state.error = action.payload;
       });
   },
 });
