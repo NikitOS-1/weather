@@ -38,7 +38,7 @@ const WeatherPage = () => {
       <br />
       {country}
       <br />
-      {temp}
+      {temp ? Math.floor(temp) : null}
       <br />
       {weatherMain}
       <br />

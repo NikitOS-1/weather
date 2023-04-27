@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchWeather = createAsyncThunk(
   "dataWeather/fetchWeather",
-  async function (_, { rejectWithValue, getState }) {
+  async function (_, { rejectWithValue, getState, dispatch }) {
     try {
       let url = "https://api.openweathermap.org/data/2.5/weather?q=";
       let nameCity = getState().dataWeather.selectCity;
@@ -12,9 +12,11 @@ export const fetchWeather = createAsyncThunk(
       const respons = await fetch(`${url}${nameCity}${api}${units}${lang}`);
       const data = await respons.json();
       if (data.message == "city not found") {
+        dispatch(removedCity());
         throw new Error("City not found");
       }
       if (data.message == "Nothing to geocode") {
+        dispatch(removedCity());
         throw new Error("Enter City");
       }
       console.log(data);
@@ -46,6 +48,14 @@ const dataWeather = createSlice({
     changeCity: (state, action) => {
       state.selectCity = action.payload;
     },
+    removedCity: (state) => {
+      state.selectCity = null;
+      state.name = null;
+      state.temp = null;
+      state.country = null;
+      state.weatherMain = null;
+      state.weatherDesc = null;
+    },
   },
   extraReducers: (bulder) => {
     bulder
@@ -69,5 +79,5 @@ const dataWeather = createSlice({
   },
 });
 
-export const { changeCity } = dataWeather.actions;
+export const { changeCity, removedCity } = dataWeather.actions;
 export default dataWeather;
