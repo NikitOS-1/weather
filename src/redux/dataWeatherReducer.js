@@ -14,9 +14,15 @@ export const fetchWeather = createAsyncThunk(
       if (data.message == "city not found") {
         throw new Error("City not found");
       }
+      if (data.message == "Nothing to geocode") {
+        throw new Error("Enter City");
+      }
       console.log(data);
       return data;
     } catch (error) {
+      if (error.message == "Failed to fetch") {
+        return rejectWithValue("404 : Server is not available");
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -29,7 +35,8 @@ const initialState = {
   name: null,
   temp: null,
   country: null,
-  weather: null,
+  weatherMain: null,
+  weatherDesc: null,
 };
 
 const dataWeather = createSlice({
@@ -52,7 +59,8 @@ const dataWeather = createSlice({
         state.name = action.payload.name;
         state.temp = action.payload.main.temp;
         state.country = action.payload.sys.country;
-        state.country = action.payload.weather;
+        state.weatherMain = action.payload.weather[0].main;
+        state.weatherDesc = action.payload.weather[0].description;
       })
       .addCase(fetchWeather.rejected, (state, action) => {
         state.status = "error";
