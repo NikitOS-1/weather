@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import style from "./BodyWeather.module.scss";
+import { CircularProgress, Skeleton } from "@mui/material";
 
 const BodyWeather = () => {
   const {
@@ -16,8 +17,8 @@ const BodyWeather = () => {
 
   return (
     <div className={style.wrap}>
-      {status == "loading" ? <p>Loading . . . </p> : null}
       {error}
+      {status == "loading" ? <CircularProgress /> : null}
       <br />
       {name}
       {country}
