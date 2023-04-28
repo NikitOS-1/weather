@@ -15,7 +15,7 @@ const BodyWeather = () => {
   } = useSelector((i) => i.dataWeather);
 
   return (
-    <div>
+    <div className={style.wrap}>
       {status == "loading" ? <p>Loading . . . </p> : null}
       {error}
       <br />

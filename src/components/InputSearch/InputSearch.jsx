@@ -21,7 +21,7 @@ const InputSearch = () => {
   };
 
   return (
-    <div>
+    <div className={style.wrap}>
       <input
         onKeyDown={handleKeyPress}
         type="text"
