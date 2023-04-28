@@ -2,9 +2,9 @@ import WeatherPage from "../../pages/WeatherPage/WeatherPage";
 
 const Main = () => {
   return (
-    <div>
+    <main>
       <WeatherPage />
-    </div>
+    </main>
   );
 };
 export default Main;
