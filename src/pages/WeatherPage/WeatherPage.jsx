@@ -4,10 +4,10 @@ import style from "./WeatherPage.module.scss";
 
 const WeatherPage = () => {
   return (
-    <main className={style.wrap}>
+    <div className={style.wrap}>
       <InputSearch />
       <BodyWeather />
-    </main>
+    </div>
   );
 };
 
