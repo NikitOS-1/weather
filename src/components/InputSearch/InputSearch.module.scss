@@ -1,23 +1,14 @@
 .wrap {
+    margin-top: 10px;
+
     input {
-        margin: 5px;
-        width: 400px;
-        height: 30px;
-        border: 2px solid rgba(0, 0, 0, 0.467);
-        border-top-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        background-color: rgba(0, 0, 0, 0.398);
-        color: white;
-
-        &:visited {
-            border: none;
-
-        }
+        width: 300px;
+        height: 20px;
     }
 
     button {
-        margin: 5px;
+        margin-left: 5px;
+        height: 53px;
         width: 80px;
-        height: 34px;
     }
 }

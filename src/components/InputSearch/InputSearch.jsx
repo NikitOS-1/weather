@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import style from "./InputSearch.module.scss";
 import { useState } from "react";
 import { changeCity, fetchWeather } from "../../redux/dataWeatherReducer";
+import { Button, TextField } from "@mui/material";
 
 const InputSearch = () => {
   const dispatch = useDispatch();
@@ -22,13 +23,17 @@ const InputSearch = () => {
 
   return (
     <div className={style.wrap}>
-      <input
+      <TextField
+        id="outlined-basic"
+        label="Enter City"
+        variant="outlined"
         onKeyDown={handleKeyPress}
-        type="text"
         value={city}
         onChange={(e) => setCity((prev) => (prev = e.target.value))}
       />
-      <button onClick={enterCity}>Search</button>
+      <Button variant="outlined" onClick={enterCity}>
+        Search
+      </Button>
     </div>
   );
 };

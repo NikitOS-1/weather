@@ -5,7 +5,7 @@ import style from "./App.module.scss";
 const App = () => {
   return (
     <div className={style.wrap}>
-      <Header />
+      {/* <Header /> */}
       <Main />
       <Footer />
     </div>
