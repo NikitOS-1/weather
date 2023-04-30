@@ -17,8 +17,10 @@ const BodyWeather = () => {
   } = useSelector((i) => i.dataWeather);
   if (selectCity == null && error == null) {
     return (
-      <div className={style.wrap}>{`Weather for you 
-    "Enter the city where you want to know the weather "`}</div>
+      <div className={style.wrap}>
+        <p>Weather for you</p>
+        <span>"Enter the city where you want to know the weather "</span>{" "}
+      </div>
     );
   } else {
     return <div className={style.wrap}>{error ? error : <MainWeather />}</div>;
