@@ -5,18 +5,9 @@ import ThermostatIcon from "@mui/icons-material/Thermostat";
 import moment from "moment";
 import style from "./MainWeather.module.scss";
 const MainWeather = () => {
-  const {
-    status,
-    error,
-    selectCity,
-    name,
-    temp,
-    country,
-    weatherMain,
-    weatherDesc,
-    wind,
-    icon,
-  } = useSelector((i) => i.dataWeather);
+  const { status, name, temp, country, weatherMain, wind, icon } = useSelector(
+    (i) => i.dataWeather
+  );
 
   if (status == "loading") {
     return <CircularProgress />;
@@ -25,7 +16,7 @@ const MainWeather = () => {
   return (
     <div className={style.wrap}>
       <div className={style.nameCity}>
-        <h1>{`${name} ,${country}`}</h1>
+        <h1>{`${name}, ${country}`}</h1>
       </div>
       <div className={style.date}>
         <h3>{moment().format("LLLL")}</h3>
