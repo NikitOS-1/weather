@@ -6,11 +6,13 @@
     margin-top: 10px;
     padding: 10px;
     border-radius: 10px;
-    width: 400px;
+    width: 360px;
     height: auto;
     background: linear-gradient(to bottom right, rgba(4, 23, 66, 0.8), rgba(74, 1, 50, 0.8));
     color: rgb(255, 243, 228);
     font-size: 20px;
+    box-shadow: 10px 5px 15px rgba(0, 0, 0, 0.465);
+    margin: 10px;
 
     span {
         font-size: 15px;
