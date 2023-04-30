@@ -2,10 +2,7 @@ import { CircularProgress } from "@mui/material";
 import { useSelector } from "react-redux";
 import AirIcon from "@mui/icons-material/Air";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
-import WbSunnyIcon from "@mui/icons-material/WbSunny";
-import AcUnitIcon from "@mui/icons-material/AcUnit";
-import CloudIcon from "@mui/icons-material/Cloud";
-import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
+import moment from "moment";
 const MainWeather = () => {
   const {
     status,
@@ -19,13 +16,15 @@ const MainWeather = () => {
     wind,
     icon,
   } = useSelector((i) => i.dataWeather);
-  //   https://openweathermap.org/img/wn/10d@2x.png
+
   if (status == "loading") {
     return <CircularProgress />;
   }
+
   return (
     <div>
       <div>{`${name} ,${country}`}</div>
+      <div>{moment().format("LLLL")}</div>
       <div>
         {<ThermostatIcon />}
         {Math.floor(temp) + "°C"}
