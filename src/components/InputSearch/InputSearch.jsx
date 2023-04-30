@@ -25,7 +25,7 @@ const InputSearch = () => {
     <div className={style.wrap}>
       <TextField
         id="outlined-basic"
-        label="Enter City"
+        label="Enter The City"
         variant="outlined"
         onKeyDown={handleKeyPress}
         value={city}

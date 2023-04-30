@@ -13,11 +13,11 @@ export const fetchWeather = createAsyncThunk(
       const data = await respons.json();
       if (data.message == "city not found") {
         dispatch(removedCity());
-        throw new Error("City not found");
+        throw new Error("The City not found");
       }
       if (data.message == "Nothing to geocode") {
         dispatch(removedCity());
-        throw new Error("Enter City");
+        throw new Error("Enter The City to search the weather");
       }
       // console.log(data);
       return data;
