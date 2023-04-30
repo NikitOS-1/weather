@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import AirIcon from "@mui/icons-material/Air";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
 import moment from "moment";
+import style from "./MainWeather.module.scss";
 const MainWeather = () => {
   const {
     status,
@@ -22,24 +23,34 @@ const MainWeather = () => {
   }
 
   return (
-    <div>
-      <div>{`${name} ,${country}`}</div>
-      <div>{moment().format("LLLL")}</div>
-      <div>
-        {<ThermostatIcon />}
-        {Math.floor(temp) + "°C"}
+    <div className={style.wrap}>
+      <div className={style.nameCity}>
+        <h1>{`${name} ,${country}`}</h1>
       </div>
-      <div>
-        <img
-          src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
-          alt="weather"
-        />
+      <div className={style.date}>
+        <h3>{moment().format("LLLL")}</h3>
       </div>
-      <div>{weatherMain}</div>
-      <div>{weatherDesc}</div>
-      <div>
-        {<AirIcon />}
-        {wind + " m/s."}
+      <div className={style.wrapWeather}>
+        <div className={style.weatherIcon}>
+          <img
+            src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+            alt="weather"
+          />
+        </div>
+
+        <div className={style.temp}>
+          <div>{<ThermostatIcon />}</div>
+          <p>{Math.floor(temp) + "°C"}</p>
+        </div>
+
+        <div className={style.weatherDesc}>
+          <p>{weatherMain}</p>
+        </div>
+
+        <div className={style.wind}>
+          <div>{<AirIcon />}</div>
+          <p>{wind + " m/s."}</p>
+        </div>
       </div>
     </div>
   );

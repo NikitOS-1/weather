@@ -1,0 +1,52 @@
+.wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 10px;
+
+    .nameCity {
+        font-size: 20px;
+        font-weight: bolder;
+    }
+
+    .date {
+        font-size: 18px;
+        font-style: italic;
+        font-weight: lighter;
+    }
+
+    .wrapWeather {
+        box-shadow: 10px 5px 15px rgba(0, 0, 0, 0.465);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: auto;
+        height: auto;
+        background-color: rgba(255, 255, 255, 0.386);
+        padding: 10px;
+        border-radius: 30px;
+
+        .weatherIcon {}
+
+        .temp {
+            font-size: 70px;
+            font-weight: lighter;
+            color: rgba(79, 0, 86, 0.629);
+
+        }
+
+
+
+        .weatherDesc {}
+
+        .wind {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+
+}
