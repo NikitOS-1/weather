@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import style from "./BodyWeather.module.scss";
 import { CircularProgress, Skeleton } from "@mui/material";
+import MainWeather from "./MainWeather/MainWeather";
 
 const BodyWeather = () => {
   const {
@@ -14,23 +15,13 @@ const BodyWeather = () => {
     weatherDesc,
     wind,
   } = useSelector((i) => i.dataWeather);
-
-  return (
-    <div className={style.wrap}>
-      {error}
-      {status == "loading" ? <CircularProgress /> : null}
-      <br />
-      {name}
-      {country}
-      <br />
-      {temp ? Math.floor(temp) + "°C" : null}
-      <br />
-      {weatherMain}
-      <br />
-      {weatherDesc}
-      <br />
-      {wind ? wind + " m/s." : null}
-    </div>
-  );
+  if (selectCity == null && error == null) {
+    return (
+      <div className={style.wrap}>{`Weather for you 
+    "Enter the city where you want to know the weather "`}</div>
+    );
+  } else {
+    return <div className={style.wrap}>{error ? error : <MainWeather />}</div>;
+  }
 };
 export default BodyWeather;
