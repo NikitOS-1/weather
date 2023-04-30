@@ -40,6 +40,7 @@ const initialState = {
   weatherMain: null,
   weatherDesc: null,
   wind: null,
+  icon: null,
 };
 
 const dataWeather = createSlice({
@@ -57,6 +58,7 @@ const dataWeather = createSlice({
       state.weatherMain = null;
       state.weatherDesc = null;
       state.wind = null;
+      state.icon = null;
     },
   },
   extraReducers: (bulder) => {
@@ -74,6 +76,7 @@ const dataWeather = createSlice({
         state.wind = action.payload.wind.speed;
         state.weatherMain = action.payload.weather[0].main;
         state.weatherDesc = action.payload.weather[0].description;
+        state.icon = action.payload.weather[0].icon;
       })
       .addCase(fetchWeather.rejected, (state, action) => {
         state.status = "error";

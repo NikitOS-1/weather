@@ -17,6 +17,7 @@ const MainWeather = () => {
     weatherMain,
     weatherDesc,
     wind,
+    icon,
   } = useSelector((i) => i.dataWeather);
   //   https://openweathermap.org/img/wn/10d@2x.png
   if (status == "loading") {
@@ -27,17 +28,19 @@ const MainWeather = () => {
       <div>{`${name} ,${country}`}</div>
       <div>
         {<ThermostatIcon />}
-        {temp ? Math.floor(temp) + "°C" : null}
+        {Math.floor(temp) + "°C"}
       </div>
-      <div>{weatherMain == "Clouds" ? <CloudIcon /> : null}</div>
-      <div>{weatherMain == "Rain" ? <ThunderstormIcon /> : null}</div>
-      <div>{weatherMain == "Sun" ? <WbSunnyIcon /> : null}</div>
-      <div>{weatherMain == "Winter" ? <AcUnitIcon /> : null}</div>
-
+      <div>
+        <img
+          src={`https://openweathermap.org/img/wn/${icon}@2x.png`}
+          alt="weather"
+        />
+      </div>
+      <div>{weatherMain}</div>
       <div>{weatherDesc}</div>
       <div>
         {<AirIcon />}
-        {wind ? wind + " m/s." : null}
+        {wind + " m/s."}
       </div>
     </div>
   );
