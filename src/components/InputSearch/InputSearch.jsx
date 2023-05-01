@@ -11,7 +11,7 @@ const InputSearch = () => {
 
   const enterCity = () => {
     setCity("");
-    dispatch(changeCity(city));
+    dispatch(changeCity(city.trimEnd()));
     dispatch(fetchWeather());
   };
 
