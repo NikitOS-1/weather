@@ -9,7 +9,7 @@ const MainWeather = () => {
     (i) => i.dataWeather
   );
 
-  if (status == "loading") {
+  if (status === "loading") {
     return <CircularProgress />;
   }
 
