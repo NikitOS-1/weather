@@ -31,7 +31,7 @@ const MainWeather = () => {
 
         <div className={style.temp}>
           <div>{<ThermostatIcon />}</div>
-          <p>{Math.floor(temp) + "°C"}</p>
+          <div>{Math.floor(temp) + "°C"}</div>
         </div>
 
         <div className={style.weatherDesc}>
@@ -40,7 +40,7 @@ const MainWeather = () => {
 
         <div className={style.wind}>
           <div>{<AirIcon />}</div>
-          <p>{wind + " m/s."}</p>
+          <div>{wind + " m/s."}</div>
         </div>
       </div>
     </div>
